@@ -49,6 +49,9 @@ class Trainer:
         if torch.cuda.is_available():
             self.device = torch.cuda.current_device()
             self.model = torch.nn.DataParallel(self.model).to(self.device)
+            print(f"Using GPU {self.device}")
+        else:
+            print(f"Using CPU {self.device}")            
 
     def save_checkpoint(self):
         # DataParallel wrappers keep raw model object in .module attribute
